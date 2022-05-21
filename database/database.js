@@ -1,3 +1,5 @@
+// Contain Database entity related to Messages
+
 const Sequelize = require('sequelize');
 
 const database = new Sequelize({

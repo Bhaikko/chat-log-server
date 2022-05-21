@@ -46,3 +46,15 @@ Postman was used to test endpoints
 
 _Example queries are provided below_ <br/>
 [Example Queries](https://imgur.com/a/pbrQSnq)
+
+## Folder Structure
+```
+.
+    ├── chat-log
+    │   ├── controller                         # Routes related to API
+    │   ├── database                           # database initialiser and handlers
+    │   ├── server.js                          # main server file containing server state
+    │   └── ...   
+    └──      
+```
+_Indiviual file description added on top of file itself_

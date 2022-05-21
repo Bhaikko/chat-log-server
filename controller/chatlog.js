@@ -1,3 +1,5 @@
+// Contains API Routes related to /chatlogs endpoint
+
 const { response } = require('express');
 const express = require('express');
 

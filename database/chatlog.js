@@ -1,3 +1,5 @@
+// Contains database operation related to chatlogs
+
 const { Messages } = require('./database');
 const { Op } = require('sequelize');
 
