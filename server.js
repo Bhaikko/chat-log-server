@@ -12,6 +12,12 @@ app.use(express.urlencoded({
 
 app.use("/chatlogs", chatlogRouter);
 
+app.use("*", (req, res) => {
+    res.status(400).json({
+        msg: "API route does not exist"
+    });
+});
+
 database.sync()
     .then(() => {
         console.log("Database Connected");
