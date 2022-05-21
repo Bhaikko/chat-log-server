@@ -15,20 +15,33 @@ module.exports.addMessage = (
 module.exports.getMessage = (
     userID,
     limit = 10,
-    start = 1
+    start = null
 ) => {
-    return Messages.findAll({
-        where: {
-            userID,
-            id: {
-                [Op.gt]: start
-            }
-        },
-        sort: [
-            ['createdAt', 'ASC']
-        ],
-        limit
-    });
+    if (start) {
+        return Messages.findAll({
+            where: {
+                userID,
+                id: {
+                    [Op.gt]: start
+                }
+            },
+            order: [
+                ['createdAt', 'DESC']
+            ],
+            limit
+        });
+    } else {
+        return Messages.findAll({
+            where: {
+                userID
+            },
+            order: [
+                ['createdAt', 'DESC']
+            ],
+            limit
+        });
+
+    }
 }
 
 module.exports.deleteMessage = (userID) => {
