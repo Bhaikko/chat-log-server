@@ -32,12 +32,21 @@ module.exports.getMessage = (
 }
 
 module.exports.deleteMessage = (userID) => {
-
+    return Messages.destroy({
+        where: {
+            userID
+        }
+    });
 }
 
 module.exports.deleteOneMessage = (
     userID,
     msgId
 ) => {
-
+    return Messages.destroy({
+        where: {
+            userID,
+            id: msgId
+        }
+    });
 }

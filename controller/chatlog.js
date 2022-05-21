@@ -1,3 +1,4 @@
+const { response } = require('express');
 const express = require('express');
 
 const chatlogRouter = express.Router();
@@ -35,9 +36,7 @@ chatlogRouter.post("/:userID", (req, res) => {
         });
 });
 
-chatlogRouter.get("/:userID", (req, res) => {
-    console.log(req.query);
-    
+chatlogRouter.get("/:userID", (req, res) => {    
     getMessage(
         req.params['userID'],
         req.query.limit,
@@ -56,14 +55,32 @@ chatlogRouter.get("/:userID", (req, res) => {
 });
 
 chatlogRouter.delete("/:userID", (req, res) => {
-
+    deleteMessage(req.params['userID'])
+        .then(response => {
+            res.status(200).json({
+                msg: `Message deleted for user ${req.params['userID']}`
+            });
+        })
+        .catch(err => {
+            res.status(400).json({
+                err: err[0].message
+            });
+        });
 });
 
-chatlogRouter.delete("/:userID/msgID", (req, res) => {
-
+chatlogRouter.delete("/:userID/:msgID", (req, res) => {
+    deleteOneMessage(req.params['userID'], req.params['msgID'])
+    .then(response => {
+        res.status(200).json({
+            msg: `Message deleted for user ${req.params['userID']}`
+        });
+    })
+    .catch(err => {
+        res.status(400).json({
+            err: err[0].message
+        });
+    });
 });
-
-
 
 module.exports = {
     chatlogRouter
