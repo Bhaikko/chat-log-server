@@ -29,15 +29,30 @@ chatlogRouter.post("/:userID", (req, res) => {
             
         })
         .catch(err => {
-            console.log(err);
             res.status(400).json({
-                // err: err[0].message
+                err: err[0].message
             });
         });
 });
 
 chatlogRouter.get("/:userID", (req, res) => {
-
+    console.log(req.query);
+    
+    getMessage(
+        req.params['userID'],
+        req.query.limit,
+        req.query.start
+    )
+        .then(response => {
+            res.status(200).json({
+                messages: response
+            });
+        })
+        .catch(err => {
+            res.status(400).json({
+                err: err[0].message
+            });
+        });
 });
 
 chatlogRouter.delete("/:userID", (req, res) => {
