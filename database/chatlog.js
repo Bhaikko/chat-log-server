@@ -4,7 +4,11 @@ module.exports.addMessage = (
     userID,
     message
 ) => {
-
+    return Messages.create({
+        userID,
+        message,
+        isSent: false
+    });
 }
 
 module.exports.getMessage = (
@@ -23,5 +27,5 @@ module.exports.deleteOneMessage = (
     userID,
     msgId
 ) => {
-    
+
 }
